@@ -1,0 +1,30 @@
+INSERT INTO genre (name)
+VALUES('Rock'), ('Pop'), ('Metal');
+
+
+INSERT INTO artist (nickname)
+VALUES('Scorpions'), ('Queen'), ('Anna Asti'), ('Jony'), ('Rammstain'), ('Metallica');
+
+
+INSERT INTO artistgenre
+VALUES(1, 1), (2, 1), (3, 2), (4, 2), (5, 3), (6, 3);
+
+
+
+INSERT INTO album (name, "year")
+values ('Blacout', 1982), ('Queen', '1973'), ('Feniks', '2022'), ('EPIC', '2024'), ('Zeit', '2022'), ('Metalica', '1991');
+
+
+
+INSERT INTO track (name, duration)
+values ('Blacout', '00:03:49'), ('Doing All right', '00:04:10'), ('Intro', '00:04:11'), ('No words', '00:02:31'), ('Zeit', '00:05:22'), ('Sad but', '00:05:25');
+
+
+INSERT INTO trackalbum 
+VALUES(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6);
+
+INSERT INTO albumartist 
+VALUES(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6);
+
+INSERT INTO collection(name, year, trackid) 
+VALUES('Best of the best', 2000, 1), ('Best of rock', 2020, 2), ('Pop collection', 2018, 3), ('Pop the best', 2021, 4), ('Hard metal', 2016, 5), ('Metal the best', 2000, 6);
