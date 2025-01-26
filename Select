@@ -1,0 +1,78 @@
+--Название и продолжительность самого длительного трека.
+
+select name, duration 
+from track 
+order by duration desc 
+limit 1
+
+
+--Название треков, продолжительность которых не менее 3,5 минут.
+
+select name
+from track 
+where duration >= '00:03:30'
+order by duration 
+
+--Названия сборников, вышедших в период с 2018 по 2020 год включительно.
+
+select name
+from collection 
+where "year" between 2018 and 2020
+
+--Исполнители, чьё имя состоит из одного слова.
+
+select nickname 
+from artist a 
+where nickname not like '% %'
+
+--Название треков, которые содержат слово «мой» или «my».
+
+select name
+from track t 
+where "name" like '%my%' or name like '%мой%'
+
+--Количество исполнителей в каждом жанре.
+select  g."name", count (artistid) as "Кол-во исполнителей"
+from artistgenre a 
+left join genre g on a.genreid = g.genreid 
+group by g.genreid 
+
+
+-- Количество треков, вошедших в альбомы 2019–2020 годов.
+
+select count (t.trackid)
+from track t 
+join trackalbum t2 on t.trackid = t2.trackid
+join album a on t2.albumid = a.albumid 
+where a."year" between 2019 and 2020
+
+
+--Средняя продолжительность треков по каждому альбому
+
+select t.albumid, avg(t2.duration) as "Средняя продолжительность треков"
+from trackalbum t 
+join track t2 on t.trackid = t2.trackid 
+group by t.albumid 
+order by t.albumid 
+
+
+--Все исполнители, которые не выпустили альбомы в 2020 году.
+
+
+select distinct a3.nickname 
+from albumartist a 
+join album a2 on a.albumid = a2.albumid 
+join artist a3 on a.artistid = a3.artistid 
+where a2."year" <>2020
+
+
+--Названия сборников, в которых присутствует конкретный исполнитель (Jony).
+
+select c."name" 
+from collection c 
+join track t on c.trackid = t.trackid 
+join trackalbum t2 on t.trackid  = t2.trackid 
+left join albumartist a  on t2.albumid = a.albumid
+left join artist a2 on a.artistid  = a2.artistid 
+where a2.nickname = 'Jony'
+
